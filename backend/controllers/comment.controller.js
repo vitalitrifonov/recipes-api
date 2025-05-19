@@ -35,8 +35,9 @@ export const addComment = async (req, res) => {
   // Salvestame kommentaari andmebaasi
   const savedComment = await newComment.save();
 
-  // Tagastame salvestatud kommentaari
-  res.status(201).json(savedComment);
+  setTimeout(() => {
+    res.status(201).json(savedComment);
+  }, 3000);
 };
 
 // Funktsioon, et kustutada kommentaar - nõuab autentimist

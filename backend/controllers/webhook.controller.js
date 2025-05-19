@@ -6,7 +6,7 @@ import { Webhook } from "svix"; // Svix teek, mis haldab webhook'ide kontrollimi
 
 // Funktsioon, mis töötab Clerk'i webhookiga
 export const clerkWebHook = async (req, res) => {
-  console.log("🔹 Clerk Webhook: Запрос получен");
+  console.log("Clerk Webhook: Запрос получен");
 
   // Webhooki salajane võti .env failist
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
@@ -46,11 +46,28 @@ export const clerkWebHook = async (req, res) => {
         clerkUserId: evt.data.id,
         username: evt.data.username || evt.data.email_addresses?.[0]?.email_address,
         email: evt.data.email_addresses?.[0]?.email_address,
-        img: evt.data.profile_img_url,
+        img: evt.data.image_url,
       });
 
       await newUser.save(); // Salvestab uue kasutaja andmebaasi
       console.log("Пользователь создан:", newUser);
+    }
+
+    // Kui kasutaja on uuendatud
+    if (evt.type === "user.updated") {
+      console.log("Обновление пользователя:", evt.data.id);
+
+      const updatedUser = await User.findOneAndUpdate(
+        { clerkUserId: evt.data.id },
+        {
+          username: evt.data.username || evt.data.email_addresses?.[0]?.email_address,
+          email: evt.data.email_addresses?.[0]?.email_address,
+          img: evt.data.image_url,
+        },
+        { new: true }
+      );
+
+      console.log("Пользователь обновлён:", updatedUser);
     }
 
     // Kui kasutaja on kustutatud

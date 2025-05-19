@@ -1,5 +1,5 @@
 import express from "express"
-import { getUserSavedPosts, savePost } from "../controllers/user.controller.js" // Kontrollerid kasutaja salvestatud retseptide jaoks
+import { getUserSavedPosts, savePost, getUserSavedPostsFull } from "../controllers/user.controller.js" // Kontrollerid kasutaja salvestatud retseptide jaoks
 
 const router = express.Router()
 
@@ -7,5 +7,7 @@ const router = express.Router()
 router.get("/saved", getUserSavedPosts)
 // Lisab või eemaldab retsepti kasutaja lemmikute seast
 router.patch("/save", savePost)
+// Tagastab kasutaja salvestatud retseptid koos andmetega
+router.get("/saved/full", getUserSavedPostsFull);
 
 export default router

@@ -10,9 +10,12 @@ import postRouter from './routes/post.route.js' // Retseptidega seotud päringut
 import commentRouter from './routes/comment.route.js' // Kommentaaridega seotud päringute marsruut
 import webHookRouter from './routes/webhook.route.js' // Clerk veebikonksude (webhook'ide) marsruut
 import { clerkMiddleware, requireAuth } from '@clerk/express' // Clerk autentimise middleware’id
+import cors from 'cors' // CORS-i (Cross-Origin Resource Sharing) tugi
 
 
 const app = express();
+// CORS-i seadistamine – lubab kõik päringud
+app.use(cors(process.env.CLIENT_URL));
 // Clerk autentimise middleware – kontrollib kasutaja identiteeti
 app.use(clerkMiddleware());
 // Clerk webhook marsruut – kuulab Clerk’i saadetud sündmusi (nt registreerimine, kustutamine)

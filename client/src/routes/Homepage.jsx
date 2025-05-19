@@ -1,0 +1,103 @@
+import { Link } from "react-router";
+import MainCategories from "../components/MainCategories";
+import FeaturedPosts from "../components/FeaturedPosts";
+import PostList from "../components/PostList";
+
+const Homepage = () => {
+  return (
+    // Peamine konteiner, keskendatud max laius ja automaatne horisontaalne margin
+    <div className="mt-4 flex flex-col gap-4 px-4 max-w-screen-2xl mx-auto">
+      {/* <Introduction /> */}
+      <div className="flex items-center justify-between">
+        {/* Pealkirjad ja sissejuhatus */}
+        <div className="">
+          <h1 className="text-gray-800 text-2xl md:text-5xl lg:text-6xl font-bold">
+            Avasta maitseelamused igast kodust!
+          </h1>
+          <p className="mt-8 text-md md:text-xl">
+            Jaga oma lemmikretsepte ja leia uusi inspiratsioone iga päev.
+          </p>
+        </div>
+        {/* Animeeritud nupp, mis viib retsepti kirjutamise lehele */}
+        <Link to="write" className="hidden md:block relative">
+          {/* SVG koos ringi pöörleva tekstiga */}
+          <svg
+            viewBox="0 0 200 200"
+            width="200"
+            height="200"
+            className="text-lg tracking-widest animate-spin-slow animatedButton"
+          >
+            <path
+              id="circlePath"
+              fill="none"
+              d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
+            />
+            <text>
+              <textPath href="#circlePath" startOffset="0%">
+                Kirjuta oma retsept •
+              </textPath>
+              <textPath href="#circlePath" startOffset="50%">
+                Jaga oma maitseid •
+              </textPath>
+            </text>
+          </svg>
+
+          {/* Ringikujuline nupp ikooniga */}
+          <button className="absolute top-0 left-0 right-0 bottom-0 m-auto w-20 h-20 bg-[#d79894] rounded-full flex items-center justify-center">
+            {/* Lusika ja kahvli SVG ikoon */}
+            <svg
+              fill="white"
+              viewBox="0 0 511 511"
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+            >
+              <g>
+                <path d="M391.5,0c-4.142,0-7.5,3.358-7.5,7.5v120c0,4.687-3.813,8.5-8.5,8.5s-8.5-3.813-8.5-8.5V7.5c0-4.142-3.358-7.5-7.5-7.5
+                S352,3.358,352,7.5v120c0,4.687-3.813,8.5-8.5,8.5s-8.5-3.813-8.5-8.5V7.5c0-4.142-3.358-7.5-7.5-7.5S320,3.358,320,7.5v120
+                c0,4.687-3.813,8.5-8.5,8.5s-8.5-3.813-8.5-8.5V7.5c0-4.142-3.358-7.5-7.5-7.5S288,3.358,288,7.5v160
+                c0,12.958,10.542,23.5,23.5,23.5c4.687,0,8.5,3.813,8.5,8.5v73.409c-13.759,3.374-24,15.806-24,30.591v160
+                c0,26.191,21.309,47.5,47.5,47.5s47.5-21.309,47.5-47.5v-160c0-14.785-10.241-27.216-24-30.591V199.5c0-4.687,3.813-8.5,8.5-8.5
+                c12.958,0,23.5-10.542,23.5-23.5V7.5C399,3.358,395.642,0,391.5,0z M376,303.5v160c0,17.92-14.58,32.5-32.5,32.5
+                S311,481.42,311,463.5v-160c0-9.098,7.402-16.5,16.5-16.5h32C368.598,287,376,294.402,376,303.5z M375.5,176
+                c-12.958,0-23.5,10.542-23.5,23.5V272h-17v-72.5c0-12.958-10.542-23.5-23.5-23.5c-4.687,0-8.5-3.813-8.5-8.5v-18.097
+                c2.638,1.027,5.503,1.597,8.5,1.597c6.177,0,11.801-2.399,16-6.31c4.199,3.911,9.823,6.31,16,6.31s11.801-2.399,16-6.31
+                c4.199,3.911,9.823,6.31,16,6.31c2.997,0,5.862-0.57,8.5-1.597V167.5C384,172.187,380.187,176,375.5,176z"/>
+                <path d="M183.5,0c-20.479,0-38.826,11.623-51.663,32.728C118.86,54.064,112,84.07,112,119.5c0,25.652,13.894,49.464,36.26,62.144
+                c7.242,4.105,11.74,12.106,11.74,20.88v70.385c-13.759,3.374-24,15.806-24,30.591v160c0,26.191,21.309,47.5,47.5,47.5
+                s47.5-21.309,47.5-47.5v-160c0-14.785-10.241-27.216-24-30.591v-70.385c0-8.774,4.499-16.775,11.74-20.88
+                C241.106,168.964,255,145.152,255,119.5c0-35.43-6.86-65.436-19.837-86.772C222.326,11.623,203.979,0,183.5,0z M216,303.5v160
+                c0,17.92-14.58,32.5-32.5,32.5S151,481.42,151,463.5v-160c0-9.098,7.402-16.5,16.5-16.5h32C208.598,287,216,294.402,216,303.5z
+                M211.343,168.595C199.412,175.359,192,188.36,192,202.524V272h-17v-69.476c0-14.164-7.412-27.165-19.342-33.929
+                C137.981,158.574,127,139.762,127,119.5c0-32.68,6.104-59.99,17.653-78.978C154.809,23.826,168.242,15,183.5,15
+                s28.691,8.826,38.847,25.522C233.896,59.51,240,86.82,240,119.5C240,139.762,229.019,158.574,211.343,168.595z"/>
+                <path d="M191.5,304c-4.142,0-7.5,3.358-7.5,7.5v16c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-16
+                C199,307.358,195.642,304,191.5,304z"/>
+                <path d="M191.5,352c-4.142,0-7.5,3.358-7.5,7.5v72c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-72
+                C199,355.358,195.642,352,191.5,352z"/>
+                <path d="M351.5,304c-4.142,0-7.5,3.358-7.5,7.5v16c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-16
+                C359,307.358,355.642,304,351.5,304z"/>
+                <path d="M351.5,352c-4.142,0-7.5,3.358-7.5,7.5v72c0,4.142,3.358,7.5,7.5,7.5s7.5-3.358,7.5-7.5v-72
+                C359,355.358,355.642,352,351.5,352z"/>
+              </g>
+            </svg>
+          </button>
+        </Link>
+      </div>
+      {/* Peamised kategooriad */}
+      <MainCategories />
+      {/* Esile tõstetud retseptid */}
+      <div className="">
+        <h1 className="my-8 text-2xl text-gray-800">Esile tõstetud retseptid</h1>
+        <FeaturedPosts />
+      </div>
+      {/* Viimati lisatud retseptid */}
+      <div className="">
+        <h1 className="my-8 text-2xl text-gray-800">Hiljutised retseptid</h1>
+        <PostList/>
+      </div>
+    </div>
+  );
+};
+
+export default Homepage;
